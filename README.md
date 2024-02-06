@@ -1,3 +1,23 @@
+
 # Prosper PDF test
 
-In progress.
+  
+
+## Running the project
+
+Install dependencies
+
+    npm install
+
+Start the app
+
+    npm start
+
+## Improvement list
+
+ - Automated tests 
+ - Better error handling 
+ - Improved interface
+ - Improve PDF viewer
+
+	
