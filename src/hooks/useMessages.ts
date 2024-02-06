@@ -33,7 +33,7 @@ function useMessages() {
             method: 'POST',
             headers: headers,
             body: JSON.stringify({
-                "question": {message}
+                "question": message
             })
         })
         .then((response) => {
