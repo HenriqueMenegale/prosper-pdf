@@ -1,10 +1,8 @@
 import { useState, useContext } from 'react';
-import IMessage from '../Types/Message';
 import MessagesContext from '../context/MessagesContext';
 function useMessages() {
     const context = useContext(MessagesContext);
 
-    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
 
     const url = 'https://prosper-conversations-beta.onrender.com/assistant/ask_question';
@@ -54,6 +52,7 @@ function useMessages() {
         })
         .catch((error) => {
             console.log("error", error);
+            setError(error);
         });
 
         
