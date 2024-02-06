@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
+import ChatContainer from './components/chat/ChatContainer';
+import PdfContainer from './components/pdf/PdfContainer';
+import MessagesContext from './context/MessagesContext';
+import IMessage from './Types/Message';
 import './App.css';
 
 function App() {
+
+  const [messages, setMessages] = useState<IMessage[]>([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MessagesContext.Provider value={{messages, setMessages, isLoading, setIsLoading, currentPage, setCurrentPage}}>
+      <div className="columns-2 gap-0">
+        <PdfContainer />
+        <ChatContainer />
+      </div>
+    </MessagesContext.Provider>
   );
 }
 
