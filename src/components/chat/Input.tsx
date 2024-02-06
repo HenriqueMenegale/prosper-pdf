@@ -35,7 +35,7 @@ function Input(){
                     type="text"
                     onChange={onChange}
                     className={inputClass}
-                    placeholder="Enter your question (max 1000 characters)"
+                    placeholder={`Enter your question (max ${charLimit} characters)`}
                     value={question} />
             </form>
         </div>
