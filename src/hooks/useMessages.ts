@@ -14,6 +14,7 @@ function useMessages() {
   
 
     const sendMessage = async (message: string) => {
+        console.log("message", message);
         const newMessages = [
             {
                 content: message,
