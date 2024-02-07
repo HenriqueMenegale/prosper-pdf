@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import MessagesContext from '../context/MessagesContext';
 import usePreferences from './usePreferences';
+import IMessage from '../Types/Message';
 
 function useMessages() {
     const context = useContext(MessagesContext);
@@ -17,7 +18,7 @@ function useMessages() {
   
 
     const sendMessage = async (message: string) => {
-        const newMessages = [
+        const newMessages : IMessage[] = [
             {
                 content: message,
                 author: 'user'
@@ -52,7 +53,8 @@ function useMessages() {
             console.log("data", data);
             newMessages.push({
                 content: data?.message?.text,
-                author: 'system'
+                author: 'system',
+                citations: data?.message?.citations
             });
             context?.setMessages([
                 ...context?.messages,
