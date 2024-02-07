@@ -22,7 +22,7 @@ Start the app
 
 Inside the file usePreferences it is possible to change the behavior of the app.
 
-### senChatHistory
+### sendChatHistory
 Defines if the app should send the whole chat history or just the last message sent by the user.
 
 ### charLimit
