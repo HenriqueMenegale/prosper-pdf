@@ -1,17 +1,18 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import useMessages from "../../hooks/useMessages";
+import usePreferences from "../../hooks/usePreferences";
 
 function Input(){
     const { sendMessage } = useMessages();
-    const charLimit = 1000;
+    const { charLimit } = usePreferences();
     const [valid, setValid] = useState(true);
+
     // test question: Does Hiscox include waiver of subrogation?
     const [question, setQuestion] = useState("");
 
     const onSubmit = (e: FormEvent) => {
         e.preventDefault();
-        if(question.length > charLimit) return;
-
+        if(!valid || question.length < 1) return;
         sendMessage(question);
         setQuestion("");
     }
@@ -20,7 +21,6 @@ function Input(){
         setQuestion(e.target.value);
         if(e.target?.value?.length > charLimit){
             setValid(false);
-            console.log("invalid");
             return;
         }
         setValid(true);
@@ -37,6 +37,9 @@ function Input(){
                     className={inputClass}
                     placeholder={`Enter your question (max ${charLimit} characters)`}
                     value={question} />
+                <div className="text-white mt-2">
+                    Remaining characters: {charLimit - question.length}
+                </div>
             </form>
         </div>
     )

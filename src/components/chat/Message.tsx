@@ -7,11 +7,29 @@ type Props = {
 
 function Message( { message }: Props){
     let messageClasses = 'w-full p-3 my-2 rounded ';
-    messageClasses += message.author === "system" ? "bg-cyan-400/20" : "bg-blue-400/20 "
+    
+    switch(message.author){
+        case "system":
+            messageClasses += 'bg-cyan-400/20 ';
+            break;
+        case "user":
+            messageClasses += 'bg-blue-400/20 ';
+            break;
+        case "error":
+            messageClasses += 'bg-red-400/20 ';
+            break;
+    }  
     
     return (
         <div className={messageClasses}>
             <Markdown>{ message.content }</Markdown>
+            {message.citations && (
+                <div className="citations">
+                    { message.citations.map((citation, index) => (
+                        <button key={index}>index</button>
+                    ))}
+                </div>
+            )}
         </div>
     )
 }

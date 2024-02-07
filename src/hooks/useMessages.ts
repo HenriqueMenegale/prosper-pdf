@@ -1,7 +1,10 @@
 import { useState, useContext } from 'react';
 import MessagesContext from '../context/MessagesContext';
+import usePreferences from './usePreferences';
+
 function useMessages() {
     const context = useContext(MessagesContext);
+    const { sendChatHistory } = usePreferences();
 
     const [error, setError] = useState("");
 
@@ -14,7 +17,6 @@ function useMessages() {
   
 
     const sendMessage = async (message: string) => {
-        console.log("message", message);
         const newMessages = [
             {
                 content: message,
@@ -29,11 +31,18 @@ function useMessages() {
 
         context?.setIsLoading(true);
 
+        //verifies if it should send just the last message our the whole chat history
+        let question;
+        if(sendChatHistory){
+            question = context?.messages.map((message) => message.content).join(' ');
+        }
+        question += `\n ${message}`;
+
         fetch(url, {
             method: 'POST',
             headers: headers,
             body: JSON.stringify({
-                "question": message
+                "question": question
             })
         })
         .then((response) => {
@@ -54,9 +63,16 @@ function useMessages() {
         .catch((error) => {
             console.log("error", error);
             setError(error);
-        });
-
-        
+            newMessages.push({
+                content: "An error occurred. Please try again in a moment, if the problem persists contact the support team.",
+                author: 'error'
+            });
+            context?.setMessages([
+                ...context?.messages,
+                ...newMessages
+            ]);
+            context?.setIsLoading(false);
+        }); 
     }
 
     return {sendMessage, messages: context?.messages, isLoading: context?.isLoading};
