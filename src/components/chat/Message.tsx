@@ -27,7 +27,7 @@ function Message( { message }: Props){
     return (
         <div className={messageClasses}>
             <Markdown>{ message.content }</Markdown>
-            {message.citations && (
+            {message.citations && message.citations.length > 0 && (
                 <div className="my-2 p-2 bg-white/40">
                     <div className="font-bold">
                         Citations:

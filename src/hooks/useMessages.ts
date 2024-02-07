@@ -7,11 +7,10 @@ function useMessages() {
     const context = useContext(MessagesContext);
     const { sendChatHistory } = usePreferences();
 
-    const [error, setError] = useState("");
-
     const url = 'https://prosper-conversations-beta.onrender.com/assistant/ask_question';
     const headers = {
         'Content-Type': 'application/json',
+        //this should be in an env file
         'X-Api-Key': 'test-challenge',
         'X-Organization': 'test'
     }
@@ -64,7 +63,6 @@ function useMessages() {
         })
         .catch((error) => {
             console.log("error", error);
-            setError(error);
             newMessages.push({
                 content: "An error occurred. Please try again in a moment, if the problem persists contact the support team.",
                 author: 'error'

@@ -1,17 +1,12 @@
-import { useState } from 'react';
 import Message from './Message';
 import IMessage from '../../Types/Message';
 import EmptyState from '../EmptyState';
 import useMessages from '../../hooks/useMessages';
 import Loader from '../Loader';
 
-type Props = {
-    messages: IMessage[] | undefined;
-}
+function Messages(){
 
-function Messages({ messages }: Props){
-
-    const { isLoading } = useMessages();
+    const { isLoading, messages } = useMessages();
 
     return (
         <div className="flex flex-col w-full p-4 h-full h-max-full overflow-scroll">
