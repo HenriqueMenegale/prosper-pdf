@@ -1,6 +1,8 @@
 import IMessage from "../../Types/Message";
 import Markdown from "react-markdown";
 import usePDF from "../../hooks/usePDF";
+import UserIcon from "../icons/UserIcon";
+import RobotIcon from "../icons/RobotIcon";
 import { extractPage } from "../../helpers/text";
 
 type Props = {
@@ -25,6 +27,14 @@ function Message( { message }: Props){
     
     return (
         <div className={messageClasses}>
+            <div className="font-bold capitalize flex mb-2">
+                { message.author === 'user' && (<UserIcon />) }
+                { message.author === 'system' && (<RobotIcon />)}
+                
+                <div className="ml-2">
+                    { message.author === "system" ? "Prosper" : message.author }
+                </div>
+            </div>
             <Markdown>{ message.content }</Markdown>
             {message.citations && message.citations.length > 0 && (
                 <div className="my-2 p-2 bg-white/40">
