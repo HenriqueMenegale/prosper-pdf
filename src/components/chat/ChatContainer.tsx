@@ -10,10 +10,7 @@ function ChatContainer() {
     const {isLoading, messages} = useMessages();
     return (
         <div className="h-screen flex flex-col p-0 m-0">
-            <Messages messages={context?.messages} />
-            {isLoading && (
-                <Loader />
-            )}
+            <Messages messages={messages} />
             <Input />
         </div>
     )

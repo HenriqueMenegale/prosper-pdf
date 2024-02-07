@@ -1,6 +1,6 @@
 function Loader(){
     return(
-        <div className="loader"></div>
+        <div className="loader self-center my-4"></div>
     )
 }
 
