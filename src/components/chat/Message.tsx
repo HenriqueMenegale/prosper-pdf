@@ -45,8 +45,8 @@ function Message( { message }: Props){
                         <button
                         onClick={() => setCurrentPage!(parseInt(extractPage(citation)) - 1)}
                         key={index}
-                        className="px-2 py-1  bg-sky-900 text-white">
-                            { extractPage(citation) }
+                        className="px-2 py-1  bg-sky-900 text-white text-sm">
+                            p. { extractPage(citation) }
                         </button>
                     ))}
                 </div>
