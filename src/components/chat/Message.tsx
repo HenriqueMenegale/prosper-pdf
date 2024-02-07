@@ -1,6 +1,6 @@
 import IMessage from "../../Types/Message";
 import Markdown from "react-markdown";
-import useMessages from "../../hooks/useMessages";
+import usePDF from "../../hooks/usePDF";
 import { extractPage } from "../../helpers/text";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 
 function Message( { message }: Props){
     let messageClasses = 'w-full p-3 my-2 rounded ';
-    const { setCurrentPage } = useMessages();
+    const { setCurrentPage } = usePDF();
 
     switch(message.author){
         case "system":

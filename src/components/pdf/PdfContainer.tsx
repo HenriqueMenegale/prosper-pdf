@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Worker, Viewer } from '@react-pdf-viewer/core';
 import { pageNavigationPlugin } from '@react-pdf-viewer/page-navigation';
-import useMessages from '../../hooks/useMessages';
+import usePDF from '../../hooks/usePDF';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/page-navigation/lib/styles/index.css';
 
@@ -9,7 +9,7 @@ function PdfContainer(){
     const pdfUrl = "https://prosper-assist-llm.s3.amazonaws.com/prosper-conversations/hiscox_gl_fe_challenge.pdf";
     const pdfNavigation = pageNavigationPlugin();
 
-    const {currentPage} = useMessages();
+    const {currentPage} = usePDF();
     
     useEffect(() => {
         pdfNavigation.jumpToPage(currentPage ?? 0);
