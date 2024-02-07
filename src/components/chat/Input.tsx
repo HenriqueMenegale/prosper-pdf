@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import useMessages from "../../hooks/useMessages";
 import usePreferences from "../../hooks/usePreferences";
+import SendIcon from "../icons/SendIcon";
 
 function Input(){
     const { sendMessage } = useMessages();
@@ -26,19 +27,20 @@ function Input(){
         setValid(true);
     }
 
-    let inputClass = "w-full p-3 border-0 rounded outline-0 " + (!valid ? "border-red-500 border-2" : '');
+    let inputClass = "p-3 border-0 rounded outline-0 flex-grow " + (!valid ? "border-red-500 border-2" : '');
 
     return (
         <div className="self-end justify-self-end w-full p-8 mt-auto bg-sky-900">
             <form action="#" onSubmit={onSubmit}>
-                <input 
-                    type="text"
-                    onChange={onChange}
-                    className={inputClass}
-                    placeholder={`Enter your question (max ${charLimit} characters)`}
-                    value={question} />
-                <div className="text-white mt-2">
-                    Remaining characters: {charLimit - question.length}
+                <div className="w-full bg-white flex items-center rounded pr-4">
+                    <input 
+                        type="text"
+                        onChange={onChange}
+                        className={inputClass}
+                        placeholder={`Enter your question (max ${charLimit} characters)`}
+                        value={question} />
+                    <div className="mr-4">{charLimit - question.length} / {charLimit}</div>
+                    <button><SendIcon /></button>
                 </div>
             </form>
         </div>
