@@ -75,7 +75,7 @@ function useMessages() {
         }); 
     }
 
-    return {sendMessage, messages: context?.messages, isLoading: context?.isLoading};
+    return {sendMessage, messages: context?.messages, isLoading: context?.isLoading, currentPage: context?.currentPage, setCurrentPage: context?.setCurrentPage};
 }
 
 export default useMessages;

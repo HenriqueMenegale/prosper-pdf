@@ -1,7 +1,6 @@
-import { useContext } from "react";
 import IMessage from "../../Types/Message";
 import Markdown from "react-markdown";
-import MessagesContext from "../../context/MessagesContext";
+import useMessages from "../../hooks/useMessages";
 import { extractPage } from "../../helpers/text";
 
 type Props = {
@@ -10,7 +9,7 @@ type Props = {
 
 function Message( { message }: Props){
     let messageClasses = 'w-full p-3 my-2 rounded ';
-    const context = useContext(MessagesContext);
+    const { setCurrentPage } = useMessages();
 
     switch(message.author){
         case "system":
@@ -34,7 +33,7 @@ function Message( { message }: Props){
                     </div>
                     { message.citations.map((citation, index) => (
                         <button
-                        onClick={() => context?.setCurrentPage(parseInt(extractPage(citation)) - 1)}
+                        onClick={() => setCurrentPage!(parseInt(extractPage(citation)) - 1)}
                         key={index}
                         className="px-2 py-1  bg-sky-900 text-white">
                             { extractPage(citation) }
