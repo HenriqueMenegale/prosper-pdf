@@ -1,6 +1,6 @@
 # Prosper PDF test
 
-This is a test app develeped for Prosper. It uses the provided API to create a chat allowing the user to ask questions about a PDF.
+This is a test app develeped for Prosper. It uses the provided API to create a chat allowing the user to ask questions about the PDF.
 
 ## Running the project
 
